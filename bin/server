@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\DI;
+use App\Command\Server\StartCommand;
+use App\Command\Server\StopCommand;
+use App\Command\Server\ReloadCommand;
+use Symfony\Component\Console\Application;
+
+$diContainer = DI::init('server/di.yml');
+
+$app = new Application('Base62 encode/decode server', 'v1.0.0');
+$app->add($diContainer->get(StartCommand::class));
+$app->add($diContainer->get(StopCommand::class));
+$app->add($diContainer->get(ReloadCommand::class));
+$app->run();

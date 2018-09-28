@@ -1,0 +1,5 @@
+# Listening host
+host: '0.0.0.0'
+
+# Listening port
+port: 8888

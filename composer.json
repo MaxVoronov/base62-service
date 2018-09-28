@@ -15,7 +15,14 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "ext-pcntl": "*",
+        "ext-posix": "*",
+        "monolog/monolog": "^1.23",
+        "symfony/config": "^4.1",
+        "symfony/console": "^4.1",
+        "symfony/dependency-injection": "^4.1",
+        "symfony/yaml": "^4.1"
     },
     "autoload": {
         "psr-4": {

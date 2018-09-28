@@ -1,0 +1,29 @@
+parameters:
+  logger.name:      'daemon'
+  logger.file_path: 'var/daemon.log'
+  pid.file_path:    'var/daemon.pid'
+  config.file_path: 'config/server/params.yml'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: false
+    public: true
+
+  App\:
+    resource: '../../src/*'
+    exclude: '../src/{DI.php}'
+
+  App\Config\Config:
+    class: App\Config\Config
+    arguments:
+      $sourceFile: '%config.file_path%'
+
+  App\Daemon\PidManager:
+    class: App\Daemon\PidManager
+    arguments:
+      $pidFile: '%pid.file_path%'
+
+  Psr\Log\LoggerInterface:
+    factory:   'App\Factory\LoggerFactory:create'
+    arguments: ['%logger.file_path%', '%logger.name%']
