@@ -24,6 +24,9 @@ services:
     arguments:
       $pidFile: '%pid.file_path%'
 
+  Amirax\Base62:
+    class: Amirax\Base62
+
   Psr\Log\LoggerInterface:
     factory:   'App\Factory\LoggerFactory:create'
     arguments: ['%logger.file_path%', '%logger.name%']

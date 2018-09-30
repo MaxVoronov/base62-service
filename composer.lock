@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b25b31eed3bccefbec6e2ee86019111",
+    "content-hash": "9aa08615f638a55a704d04172927d244",
     "packages": [
+        {
+            "name": "amirax/base62",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amirax/base62.git",
+                "reference": "2c97d941a178c2189ef1324145351903be2b4fe0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amirax/base62/zipball/2c97d941a178c2189ef1324145351903be2b4fe0",
+                "reference": "2c97d941a178c2189ef1324145351903be2b4fe0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "paragonie/random_compat": "^2.0",
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amirax\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Voronov",
+                    "email": "maxivoronov@gmail.com",
+                    "homepage": "https://github.com/MaxVoronov",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Base62 encoder and decoder",
+            "homepage": "https://github.com/amirax/base62",
+            "keywords": [
+                "base62",
+                "decode",
+                "encode"
+            ],
+            "time": "2017-07-29T01:32:24+00:00"
+        },
         {
             "name": "monolog/monolog",
             "version": "1.23.0",
@@ -618,7 +667,8 @@
     "platform": {
         "php": "^7.1",
         "ext-pcntl": "*",
-        "ext-posix": "*"
+        "ext-posix": "*",
+        "ext-sockets": "*"
     },
     "platform-dev": []
 }

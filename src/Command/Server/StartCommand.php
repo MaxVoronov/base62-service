@@ -4,7 +4,7 @@ namespace App\Command\Server;
 
 use App\Daemon;
 use App\Config\Config;
-use App\Daemon\Runnable\DummyRunnable;
+use App\Daemon\Runnable\SocketRunnable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,7 +22,7 @@ class StartCommand extends Command
     protected $config;
 
 
-    public function __construct(Daemon $daemon, DummyRunnable $runnable, Config $config)
+    public function __construct(Daemon $daemon, SocketRunnable $runnable, Config $config)
     {
         $this->daemon = $daemon;
         $this->config = $config;
@@ -56,6 +56,7 @@ class StartCommand extends Command
             $this->config->getPort())
         );
 
-        $this->daemon->start($this->runnable);      // ToDo: Include via DI?
+        $noDaemonMode = (bool) $input->getOption('no-daemonize');
+        $this->daemon->start($this->runnable, !$noDaemonMode);      // ToDo: Include runnable via DI?
     }
 }

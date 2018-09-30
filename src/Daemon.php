@@ -174,7 +174,7 @@ class Daemon
      */
     protected function onPanic(\Exception $e): void
     {
-        $this->logger->info('Panic in worker', [$e]);
+        $this->logger->error('Panic in worker', [$e]);
         $this->runnable->panicked();
         $this->pidManager->close();
     }
