@@ -26,6 +26,9 @@
         "symfony/dependency-injection": "^4.1",
         "symfony/yaml": "^4.1"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "src"
@@ -33,5 +36,8 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/phpcs --standard=PSR2 --extensions=php --encoding=utf-8 --colors ./src -p -s"
     }
 }

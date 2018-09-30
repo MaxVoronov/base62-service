@@ -53,8 +53,8 @@ class StartCommand extends Command
         $output->writeln(sprintf(
             'Server listening %s:%s',
             $this->config->getHost(),
-            $this->config->getPort())
-        );
+            $this->config->getPort()
+        ));
 
         $noDaemonMode = (bool) $input->getOption('no-daemonize');
         $this->daemon->start($this->runnable, !$noDaemonMode);      // ToDo: Include runnable via DI?
