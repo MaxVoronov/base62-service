@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\DI;
-use App\Command\Server\StartCommand;
-use App\Command\Server\StopCommand;
-use App\Command\Server\ReloadCommand;
+use App\Server\Command\StartCommand;
+use App\Server\Command\StopCommand;
+use App\Server\Command\ReloadCommand;
 use Symfony\Component\Console\Application;
 
 $diContainer = DI::init('server/di.yml');

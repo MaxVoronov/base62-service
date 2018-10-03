@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Daemon\Runnable;
+namespace App\Server\Daemon\Runnable;
 
 use App\Config\Config;
 use App\Service\Base62Service;
@@ -45,7 +45,7 @@ class SocketRunnable extends AbstractRunnable
     {
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if ($this->socket === false) {
-            throw new \Exception('Can\'t create socket');
+            throw new \Exception('Can\'t init socket');
         }
 
         if (!socket_bind($this->socket, $this->config->getHost(), $this->config->getPort())) {
@@ -102,6 +102,8 @@ class SocketRunnable extends AbstractRunnable
                 $buffer = trim($buffer);
                 $this->onProcessing($buffer, $client);
             }
+
+            usleep(500000);
         }
     }
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Daemon\Exception;
+namespace App\Server\Daemon\Exception;
 
 class ReloadException extends \DomainException
 {

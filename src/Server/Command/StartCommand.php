@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Command\Server;
+namespace App\Server\Command;
 
-use App\Daemon;
 use App\Config\Config;
-use App\Daemon\Runnable\SocketRunnable;
+use App\Server\Daemon;
+use App\Server\Daemon\Runnable\RunnableInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,17 +12,23 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class StartCommand extends Command
 {
-    /** @var \App\Daemon */
+    /** @var \App\Server\Daemon */
     protected $daemon;
 
-    /** @var \App\Daemon\Runnable\RunnableInterface */
+    /** @var \App\Server\Daemon\Runnable\RunnableInterface */
     protected $runnable;
 
     /** @var \App\Config\Config */
     protected $config;
 
-
-    public function __construct(Daemon $daemon, SocketRunnable $runnable, Config $config)
+    /**
+     * StartCommand constructor
+     *
+     * @param Daemon $daemon
+     * @param RunnableInterface $runnable
+     * @param Config $config
+     */
+    public function __construct(Daemon $daemon, RunnableInterface $runnable, Config $config)
     {
         $this->daemon = $daemon;
         $this->config = $config;
@@ -57,6 +63,6 @@ class StartCommand extends Command
         ));
 
         $noDaemonMode = (bool) $input->getOption('no-daemonize');
-        $this->daemon->start($this->runnable, !$noDaemonMode);      // ToDo: Include runnable via DI?
+        $this->daemon->start($this->runnable, !$noDaemonMode);
     }
 }

@@ -1,0 +1,5 @@
+# Service host
+host: '127.0.0.1'
+
+# Service port
+port: 8888

@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Command\Server;
+namespace App\Server\Command;
 
-use App\Daemon;
+use App\Server\Daemon;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class StopCommand extends Command
+class ReloadCommand extends Command
 {
     /** @var Daemon */
     protected $daemon;
@@ -28,8 +28,8 @@ class StopCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('stop')
-            ->setDescription('Stop server');
+        $this->setName('reload')
+            ->setDescription('Reload config and restart jobs');
     }
 
     /**
@@ -37,8 +37,8 @@ class StopCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->write('Stopping server... ');
-        $this->daemon->stop();
+        $output->write('Reload server config... ');
+        $this->daemon->reload();
         $output->writeln('Done!');
     }
 }

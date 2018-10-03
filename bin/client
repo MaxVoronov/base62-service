@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\DI;
+use App\Client\Command\EncodeCommand;
+use App\Client\Command\DecodeCommand;
+use Symfony\Component\Console\Application;
+
+$diContainer = DI::init('client/di.yml');
+
+$app = new Application('Base62 encode/decode client', 'v1.0.0');
+$app->add($diContainer->get(EncodeCommand::class));
+$app->add($diContainer->get(DecodeCommand::class));
+$app->run();

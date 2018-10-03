@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Daemon\Runnable;
+namespace App\Server\Daemon\Runnable;
 
 abstract class AbstractRunnable implements RunnableInterface
 {

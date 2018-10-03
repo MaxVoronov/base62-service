@@ -12,17 +12,23 @@ services:
 
   App\:
     resource: '../../src/*'
-    exclude: '../src/{DI.php}'
+    exclude: '../src/{Client,DI.php}'
 
   App\Config\Config:
     class: App\Config\Config
     arguments:
       $sourceFile: '%config.file_path%'
 
-  App\Daemon\PidManager:
-    class: App\Daemon\PidManager
+  App\Server\Daemon\PidManager:
+    class: App\Server\Daemon\PidManager
     arguments:
       $pidFile: '%pid.file_path%'
+
+  App\Repository\Base62RepositoryInterface:
+    class: App\Server\Repository\Base62LocalRepository
+
+  App\Server\Daemon\Runnable\RunnableInterface:
+    class: App\Server\Daemon\Runnable\SocketRunnable
 
   Amirax\Base62:
     class: Amirax\Base62

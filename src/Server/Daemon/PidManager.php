@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Daemon;
+namespace App\Server\Daemon;
 
-use App\Daemon\Exception\Pid\AlreadyExistsException;
-use App\Daemon\Exception\Pid\NotReadableExtension;
-use App\Daemon\Exception\Pid\NotWritableException;
+use App\Server\Daemon\Exception\Pid\AlreadyExistsException;
+use App\Server\Daemon\Exception\Pid\NotReadableExtension;
+use App\Server\Daemon\Exception\Pid\NotWritableException;
 
 class PidManager
 {
@@ -18,7 +18,7 @@ class PidManager
      */
     public function __construct(string $pidFile)
     {
-        $this->pidFile = __DIR__ . '/../../' . $pidFile;
+        $this->pidFile = __DIR__ . '/../../../' . $pidFile;
     }
 
     /**

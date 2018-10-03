@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App;
+namespace App\Server;
 
 use App\Config\Config;
-use App\Daemon\Exception\ReloadException;
-use App\Daemon\Exception\StopException;
-use App\Daemon\PidManager;
-use App\Daemon\Runnable\RunnableInterface;
+use App\Server\Daemon\Exception\ReloadException;
+use App\Server\Daemon\Exception\StopException;
+use App\Server\Daemon\PidManager;
+use App\Server\Daemon\Runnable\RunnableInterface;
 use Psr\Log\LoggerInterface;
 
 class Daemon
@@ -42,8 +42,8 @@ class Daemon
      *
      * @param RunnableInterface $runnableInstance
      * @param bool $isDaemonMode
-     * @throws Daemon\Exception\Pid\AlreadyExistsException
-     * @throws Daemon\Exception\Pid\NotWritableException
+     * @throws \App\Server\Daemon\Exception\Pid\AlreadyExistsException
+     * @throws \App\Server\Daemon\Exception\Pid\NotWritableException
      */
     public function start(RunnableInterface $runnableInstance, bool $isDaemonMode = true): void
     {
@@ -80,7 +80,7 @@ class Daemon
     /**
      * Send reload signal to daemon
      *
-     * @throws Daemon\Exception\Pid\NotReadableExtension
+     * @throws \App\Server\Daemon\Exception\Pid\NotReadableExtension
      */
     public function reload()
     {
@@ -91,7 +91,7 @@ class Daemon
     /**
      * Send stop signal to daemon
      *
-     * @throws Daemon\Exception\Pid\NotReadableExtension
+     * @throws \App\Server\Daemon\Exception\Pid\NotReadableExtension
      */
     public function stop(): void
     {
@@ -119,8 +119,8 @@ class Daemon
      * System signals handlers
      *
      * @param int $sigNo
-     * @throws \App\Daemon\Exception\ReloadException
-     * @throws \App\Daemon\Exception\StopException
+     * @throws \App\Server\Daemon\Exception\ReloadException
+     * @throws \App\Server\Daemon\Exception\StopException
      */
     public function signalHandler(int $sigNo): void
     {
@@ -157,7 +157,7 @@ class Daemon
     /**
      * Processor on stop signal
      *
-     * @throws Daemon\Exception\Pid\NotWritableException
+     * @throws \App\Server\Daemon\Exception\Pid\NotWritableException
      */
     protected function onStopSignal(): void
     {
@@ -169,7 +169,7 @@ class Daemon
      * Processor for non-signal exceptions
      *
      * @param \Exception $e
-     * @throws Daemon\Exception\Pid\NotWritableException
+     * @throws \App\Server\Daemon\Exception\Pid\NotWritableException
      * @todo Auto reload with sleep
      */
     protected function onPanic(\Exception $e): void

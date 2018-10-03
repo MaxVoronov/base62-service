@@ -2,24 +2,24 @@
 
 namespace App\Service;
 
-use Amirax\Base62;
+use App\Repository\Base62RepositoryInterface;
 
 class Base62Service
 {
     public const MODE_ENCODE = 'encode';
     public const MODE_DECODE = 'decode';
 
-    /** @var Base62 */
-    protected $base62;
+    /** @var Base62RepositoryInterface */
+    protected $base62Repository;
 
     /**
      * Base62Service constructor
      *
-     * @param Base62 $base62
+     * @param Base62RepositoryInterface $base62Repository
      */
-    public function __construct(Base62 $base62)
+    public function __construct(Base62RepositoryInterface $base62Repository)
     {
-        $this->base62 = $base62;
+        $this->base62Repository = $base62Repository;
     }
 
     /**
@@ -49,7 +49,7 @@ class Base62Service
      */
     public function encode(string $payload): string
     {
-        return $this->base62->encode($payload);
+        return $this->base62Repository->encode($payload);
     }
 
     /**
@@ -60,7 +60,7 @@ class Base62Service
      */
     public function decode(string $payload): string
     {
-        return $this->base62->decode($payload);
+        return $this->base62Repository->decode($payload);
     }
 
     /**

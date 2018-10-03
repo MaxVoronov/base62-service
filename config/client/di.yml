@@ -1,0 +1,23 @@
+parameters:
+  logger.name:      'client'
+  logger.file_path: 'var/client.log'
+  config.file_path: 'config/client/params.yml'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: false
+    public: true
+
+  App\:
+    resource: '../../src/*'
+    exclude: '../src/{Server,DI.php}'
+
+  App\Config\Config:
+    class: App\Config\Config
+    arguments:
+      $sourceFile: '%config.file_path%'
+
+  Psr\Log\LoggerInterface:
+    factory:   'App\Factory\LoggerFactory:create'
+    arguments: ['%logger.file_path%', '%logger.name%']
