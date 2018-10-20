@@ -3,6 +3,7 @@
 namespace App\Config;
 
 use App\Config\Exception\ConfigFileNotFoundException;
+use App\Config\Exception\InvalidFormatException;
 use App\Config\Exception\InvalidParamException;
 use App\Config\Exception\ParamNotFoundException;
 use Psr\Log\LoggerInterface;
@@ -30,11 +31,12 @@ class Config
      * @throws ConfigFileNotFoundException
      * @throws InvalidParamException
      * @throws ParamNotFoundException
+     * @throws InvalidFormatException
      */
     public function __construct(LoggerInterface $logger, string $sourceFile)
     {
         $this->logger = $logger;
-        $this->sourceFile = __DIR__ . '/../../' . $sourceFile;
+        $this->sourceFile = \dirname(__FILE__, 2) . $sourceFile;
 
         $this->load();
     }
@@ -46,6 +48,7 @@ class Config
      * @throws ConfigFileNotFoundException
      * @throws InvalidParamException
      * @throws ParamNotFoundException
+     * @throws InvalidFormatException
      */
     public function load(): self
     {
@@ -56,7 +59,11 @@ class Config
             ));
         }
 
-        $config = Yaml::parseFile($this->sourceFile);
+        try {
+            $config = Yaml::parseFile($this->sourceFile);
+        } catch (\Symfony\Component\Yaml\Exception\ParseException $e) {
+            throw new InvalidFormatException($e->getMessage());
+        }
 
         if (empty($config['host'])) {
             throw new ParamNotFoundException('Parameter "host" is required');
@@ -81,6 +88,7 @@ class Config
      * @throws ConfigFileNotFoundException
      * @throws InvalidParamException
      * @throws ParamNotFoundException
+     * @throws InvalidFormatException
      */
     public function reload(): self
     {

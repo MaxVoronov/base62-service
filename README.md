@@ -15,7 +15,7 @@ $ bin/server start              # Run in background mode
 
 For stopping daemonized server use command:
 ```
-$ bin/sever stop
+$ bin/server stop
 ```
 
 Also you can reload configs without manual stopping server:

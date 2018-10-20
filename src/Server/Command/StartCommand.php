@@ -62,7 +62,7 @@ class StartCommand extends Command
             $this->config->getPort()
         ));
 
-        $noDaemonMode = (bool) $input->getOption('no-daemonize');
-        $this->daemon->start($this->runnable, !$noDaemonMode);
+        $isDaemonMode = !((bool) $input->getOption('no-daemonize'));
+        $this->daemon->start($this->runnable, $isDaemonMode);
     }
 }

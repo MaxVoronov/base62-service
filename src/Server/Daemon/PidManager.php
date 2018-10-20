@@ -18,7 +18,7 @@ class PidManager
      */
     public function __construct(string $pidFile)
     {
-        $this->pidFile = __DIR__ . '/../../../' . $pidFile;
+        $this->pidFile = \dirname(__FILE__, 3) . $pidFile;
     }
 
     /**

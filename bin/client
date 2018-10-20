@@ -2,9 +2,9 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\DI;
-use App\Client\Command\EncodeCommand;
 use App\Client\Command\DecodeCommand;
+use App\Client\Command\EncodeCommand;
+use App\DI;
 use Symfony\Component\Console\Application;
 
 $diContainer = DI::init('client/di.yml');
